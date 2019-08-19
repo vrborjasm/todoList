@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo, handleCheck }) => {
 
   return (
     <div className="card mt-1 mb-1">
         <div className="card-body">
             <div className="row">
                 <div className="col-lg-2 my-auto text-center">
-                <i className="material-icons">check_box</i>
+                <i className="material-icons" onClick={() => handleCheck(todo)}>{ todo.selected ? "check_box" : "check_box_outline_blank"}</i>
                 </div>         
                 <div className="col-lg-6 my-auto">
                     <p>{todo.description}</p>
