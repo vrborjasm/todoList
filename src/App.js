@@ -9,7 +9,7 @@ class App extends Component {
       "id": 1,
       "description": "Hacer app",
       "status": "pending",
-      "date": "2019-08-20T18:49:02.116Z"
+      "date": "2019-08-25T18:49:02.116Z"
     },
     {
       "id": 2,
@@ -33,7 +33,7 @@ class App extends Component {
 
   render() {
     const todoList = this.state.todoList.sort((todoA, todoB) => todoA.id - todoB.id);
-    
+
     return (
       <div>
         <Header title="Todo List"/>

@@ -1,7 +1,15 @@
 import React from 'react';
 
-const Todo = ({ todo, handleCheck }) => {
+const changeStatus = ({ finished, date }) => {
+    if (finished) return 'done'
+    else if (date > Date.now()) return 'alarm'
+    return 'warning'
+  }
 
+  
+
+const Todo = ({ todo, handleCheck }) => {
+    const status = changeStatus(todo)
   return (
     <div className="card mt-1 mb-1">
         <div className="card-body">
@@ -16,7 +24,7 @@ const Todo = ({ todo, handleCheck }) => {
                     <p>{todo.date}</p>
                 </div>
                 <div className="col-lg-2 my-auto text-center">
-                    <p>Status</p>
+                <i className="material-icons">{status}</i>
                 </div>
             </div>
         </div>
