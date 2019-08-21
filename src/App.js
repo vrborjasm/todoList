@@ -4,27 +4,18 @@ import Header from './components/Header'
 import Admin from './components/Admin'
 import TodoList from './components/TodoList';
 import NewTodo from './components/NewTodo';
+import api from './api';
+
 
 class App extends Component {
   state={
-    todoList: [{
-      "id": 1,
-      "description": "Hacer app",
-      "status": "pending",
-      "date": "2019-08-25T18:49:02.116Z"
-    },
-    {
-      "id": 2,
-      "description": "Estudiar React",
-      "status": "pending",
-      "date": "2019-08-17T18:49:02.116Z"
-    },
-    {
-      "id": 3,
-      "description": "Visitar a Lezama",
-      "status": "pending",
-      "date": "2019-08-17T18:49:02.116Z"
-    }]
+    todoList: []
+  }
+
+  componentDidMount () {
+    api.getList()
+      .then(response => this.setState({ todoList: response.data }))
+      .catch(err => alert('No nos hemos podido comunicar con el servidor, intentalo nuevamente'))
   }
 
   handleCheck = (oldTodo) => {
