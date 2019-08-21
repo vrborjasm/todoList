@@ -16,7 +16,7 @@ class App extends Component {
     api.getList()
       .then(response => this.setState({ todoList: response.data }))
       .catch(err => alert('No nos hemos podido comunicar con el servidor, intentalo nuevamente'))
-  }
+    }
 
   handleCheck = (oldTodo) => {
     const todoList = this.state.todoList.filter(todo => todo.id !== oldTodo.id)
@@ -61,13 +61,38 @@ class App extends Component {
     })
 }
 
-  render() {
-    const todoList = this.state.todoList.sort((todoA, todoB) => todoA.id - todoB.id);
+    sortBy = (order="creation") => {
+      let todof = []
+      let todol = []
+      let todop = []
+      let todoList = []
+      
+      if (order === "creation") {
+        todoList = this.state.todoList.sort((todoA, todoB) => todoA.id < todoB.id);
+      }
 
+      if (order === "expiration") {
+        todoList = this.state.todoList.sort((todoA, todoB) => new Date(todoA.date) > new Date(todoB.date));
+      }
+
+      if (order === "status") {
+        todof = this.state.todoList.filter(todo => todo.finished)
+        todop = this.state.todoList.filter(todo => (new Date(todo.date) > new Date()) && !todo.finished)
+        todol = this.state.todoList.filter(todo => (new Date(todo.date) < new Date()) && !todo.finished)
+        todoList = todol.concat(todop,todof)
+      }
+
+      this.setState({
+        todoList: todoList
+      }) 
+    }  
+
+  render() {
+  
     return (
       <div>
         <Header title="Todo List"/>
-        <Admin freeTodos={this.freeTodos}/>
+        <Admin freeTodos={this.freeTodos} sortBy={this.sortBy}/>
         <TodoList todoList={this.state.todoList} handleCheck={this.handleCheck}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
