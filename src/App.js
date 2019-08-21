@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from './components/Header'
 import Admin from './components/Admin'
 import TodoList from './components/TodoList';
+import NewTodo from './components/NewTodo';
 
 class App extends Component {
   state={
@@ -41,6 +42,13 @@ class App extends Component {
     this.setState({ todoList })
   }
 
+  addTodo = (todo) => {
+    const todoList = [...this.state.todoList, todo];
+    this.setState({
+        todoList
+    })
+}
+
   render() {
     const todoList = this.state.todoList.sort((todoA, todoB) => todoA.id - todoB.id);
 
@@ -48,7 +56,8 @@ class App extends Component {
       <div>
         <Header title="Todo List"/>
         <Admin freeTodos={this.freeTodos}/>
-        <TodoList todoList={this.state.todoList} handleCheck={this.handleCheck}/> 
+        <TodoList todoList={this.state.todoList} handleCheck={this.handleCheck}/>
+        <NewTodo addTodo={this.addTodo}/> 
       </div>
     );
   }
