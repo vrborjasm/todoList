@@ -1,10 +1,8 @@
 import React from 'react';
 
 const changeStatus = ({ finished, date }) => {
-  date = new Date(date)  
-  date = date.getTime()
   if (finished) return 'done'
-    else if (date > Date.now()) return 'alarm'
+    else if (new Date(date) > Date.now()) return 'alarm'
     return 'warning'
   }
 

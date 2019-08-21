@@ -18,7 +18,12 @@ class App extends Component {
       .catch(err => alert('No nos hemos podido comunicar con el servidor, intentalo nuevamente'))
     }
 
-  handleCheck = (oldTodo) => {
+    handleChange= (e) => {
+      const status = e.target.value
+      this.sortBy(status)
+  }
+
+    handleCheck = (oldTodo) => {
     const todoList = this.state.todoList.filter(todo => todo.id !== oldTodo.id)
     todoList.push({ ...oldTodo, selected: !oldTodo.selected })
     this.setState({ todoList })
@@ -88,11 +93,11 @@ class App extends Component {
     }  
 
   render() {
-  
+    
     return (
       <div>
         <Header title="Todo List"/>
-        <Admin freeTodos={this.freeTodos} sortBy={this.sortBy}/>
+        <Admin freeTodos={this.freeTodos} handleChange={this.handleChange}/>
         <TodoList todoList={this.state.todoList} handleCheck={this.handleCheck}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
