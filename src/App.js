@@ -29,6 +29,20 @@ class App extends Component {
     this.setState({ todoList })
   }
 
+  modifyDate = (e,oldTodo) => {
+    const todoList = this.state.todoList.filter(todo => todo.id !== oldTodo.id)
+    this.setState({ todoList })
+    api.patch(oldTodo.id, { date: e.target.value })
+    .then(response => {
+      this.setState({ todoList: this.includeInTodoList(response.data) });
+    })
+    .catch(err => {
+      this.setState({ todoList: this.includeInTodoList({ ...oldTodo }) });
+      alert('Hubo un problema conectando al servidor. Intentalo de nuevo mas tarde!');
+    })
+    
+  }
+
   includeInTodoList = (todo) => {
     const todoList = this.state.todoList.map(todo => ({ ...todo }));
     todoList.push(todo);
@@ -98,7 +112,7 @@ class App extends Component {
       <div>
         <Header title="Todo List"/>
         <Admin freeTodos={this.freeTodos} handleChange={this.handleChange}/>
-        <TodoList todoList={todoList} handleCheck={this.handleCheck}/>
+        <TodoList todoList={todoList} handleCheck={this.handleCheck} modifyDate={this.modifyDate}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
     );
