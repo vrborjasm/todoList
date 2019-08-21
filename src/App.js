@@ -24,19 +24,40 @@ class App extends Component {
     this.setState({ todoList })
   }
 
+  includeInTodoList = (todo) => {
+    const todoList = this.state.todoList.map(todo => ({ ...todo }));
+    todoList.push(todo);
+
+    return todoList;
+  }
+
   freeTodos = () => {
-    let todoList=[]
+    const todoList = [];
+
     this.state.todoList.forEach(todo => {
-      todo = (todo.selected) ? { ...todo, finished: true } : { ...todo }
-      todoList.push(todo) 
-    });
-    this.setState({ todoList })
+      if (todo.selected) {
+        api.patch(todo.id, { finished: true })
+          .then(response => {
+            this.setState({ todoList: this.includeInTodoList(response.data) });
+          })
+          .catch(err => {
+            this.setState({ todoList: this.includeInTodoList({ ...todo }) });
+            alert('Hubo un problema conectando al servidor. Intentalo de nuevo mas tarde!');
+          })
+      } else {
+        todoList.push({ ...todo });
+      }
+    })
+
+    this.setState({ todoList });
   }
 
   addTodo = (todo) => {
-    const todoList = [...this.state.todoList, todo];
-    this.setState({
-        todoList
+    api.post(todo).then(response => {
+      this.setState({ todoList: this.includeInTodoList(response.data) });
+    })
+    .catch(err => {
+      alert('Hubo un problema conectando al servidor. Intentalo de nuevo mas tarde!');
     })
 }
 
