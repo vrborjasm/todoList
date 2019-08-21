@@ -9,7 +9,8 @@ import api from './api';
 
 class App extends Component {
   state={
-    todoList: []
+    todoList: [],
+    sortBy: 'creation'
   }
 
   componentDidMount () {
@@ -19,8 +20,7 @@ class App extends Component {
     }
 
     handleChange= (e) => {
-      const status = e.target.value
-      this.sortBy(status)
+      this.setState({ sortBy: e.target.value })  
   }
 
     handleCheck = (oldTodo) => {
@@ -66,7 +66,8 @@ class App extends Component {
     })
 }
 
-    sortBy = (order="creation") => {
+    sortedList = () => {
+      const order = this.state.sortBy
       let todof = []
       let todol = []
       let todop = []
@@ -81,24 +82,23 @@ class App extends Component {
       }
 
       if (order === "status") {
-        todof = this.state.todoList.filter(todo => todo.finished)
-        todop = this.state.todoList.filter(todo => (new Date(todo.date) > new Date()) && !todo.finished)
-        todol = this.state.todoList.filter(todo => (new Date(todo.date) < new Date()) && !todo.finished)
+        this.state.todoList.forEach(todo => {
+          if (todo.finished) { todof.push(todo) }
+          else if (new Date(todo.date) > new Date()) { todop.push(todo) }
+          else {todol.push(todo)}
+        });
         todoList = todol.concat(todop,todof)
       }
-
-      this.setState({
-        todoList: todoList
-      }) 
+      return todoList
     }  
 
   render() {
-    
+    const todoList = this.sortedList()
     return (
       <div>
         <Header title="Todo List"/>
         <Admin freeTodos={this.freeTodos} handleChange={this.handleChange}/>
-        <TodoList todoList={this.state.todoList} handleCheck={this.handleCheck}/>
+        <TodoList todoList={todoList} handleCheck={this.handleCheck}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
     );
