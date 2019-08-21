@@ -1,15 +1,17 @@
 import React from 'react';
 
 const changeStatus = ({ finished, date }) => {
-    if (finished) return 'done'
+  date = new Date(date)  
+  date = date.getTime()
+  if (finished) return 'done'
     else if (date > Date.now()) return 'alarm'
     return 'warning'
   }
 
   
 
-const Todo = ({ todo, handleCheck }) => {
-    const status = changeStatus(todo)
+const Todo = ({ todo, handleCheck }) => {  
+  const status = changeStatus(todo)
   return (
     <div className="card mt-1 mb-1">
         <div className="card-body">
