@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Admin = ({freeTodos, handleChange, handleChangeFilter}) => {
+const Admin = ({freeTodos, handleChangeSort, handleChangeFilter}) => {
     return (
         <div className="container">
             <div className="row">
@@ -12,7 +12,7 @@ const Admin = ({freeTodos, handleChange, handleChangeFilter}) => {
                         <div className="input-group-prepend">
                             <label className="input-group-text" for="inputGroupSelect01">Orden</label>
                         </div>
-                        <select className="custom-select" id="inputGroupSelect01" onChange={handleChange}>
+                        <select className="custom-select" id="inputGroupSelect01" onChange={handleChangeSort}>
                             <option selected value="creation">Fecha de creacion</option>
                             <option value="expiration">Fecha de vencimiento</option>
                             <option value="status">Estado</option>

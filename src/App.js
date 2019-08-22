@@ -20,7 +20,7 @@ class App extends Component {
       .catch(err => alert('No nos hemos podido comunicar con el servidor, intentalo nuevamente'))
     }
 
-    handleChange= (e) => {
+    handleChangeSort= (e) => {
       this.setState({ sortBy: e.target.value })  
   }
 
@@ -93,19 +93,15 @@ class App extends Component {
       
       if (order === "creation") {
         todoList = todoList.sort((todoA, todoB) => todoA.id < todoB.id);
-      }
-
-      if (order === "expiration") {
+      } else if (order === "expiration") {
         todoList = todoList.sort((todoA, todoB) => new Date(todoA.date) > new Date(todoB.date));
-      }
-
-      if (order === "status") {
+      } else {
         todoList.forEach(todo => {
           if (todo.finished) { todof.push(todo) }
           else if (new Date(todo.date) > new Date()) { todop.push(todo) }
           else {todol.push(todo)}
         });
-        
+
         todoList = todol.concat(todop,todof)
       }
       return todoList
@@ -134,7 +130,7 @@ class App extends Component {
     return (
       <div>
         <Header title="Todo List"/>
-        <Admin freeTodos={this.freeTodos} handleChange={this.handleChange} handleChangeFilter={this.handleChangeFilter}/>
+        <Admin freeTodos={this.freeTodos} handleChangeSort={this.handleChangeSort} handleChangeFilter={this.handleChangeFilter}/>
         <TodoList todoList={todoList} handleCheck={this.handleCheck} modifyDate={this.modifyDate}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
