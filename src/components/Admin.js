@@ -4,7 +4,7 @@ const Admin = ({freeTodos, handleChangeSort, handleChangeFilter}) => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-lg-8 my-auto text-center">
+                <div className="offset-lg-1 col-lg-6 my-auto text-center">
                     <button className="btn btn-secondary btn-raised btn-lg" onClick={freeTodos}>Liberar Seleccionadas</button>
                 </div>
                 <div className="col-lg-4">

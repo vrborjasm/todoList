@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './NewTodo.css';
+
 const iniState = {
     todo: {
         description: '',
@@ -40,41 +42,44 @@ class NewTodo extends Component {
     render() {
         const { error } = this.state;
         return (
-            <div className="container"> 
-                <div className="card">
-                    <div className="card-body">
-            { error ? <div className="alert alert-danger mt-2 mb-5 text-center">Todos los campos son obligatorios</div> : null }
-                        <div className="row">
-                            <form onSubmit={this.handleSubmit} className="col-lg-12">
-                                <div className="row">
-                                    <div className="form-group col-lg-7 my-auto">
-                                        <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        placeholder="Cosa por hacer" 
-                                        name="description"
-                                        onChange={this.handleChange}
-                                        value={this.state.todo.description}
-                                        />
-                                    </div> 
-
-
-                                    <div className="form-group col-lg-3 my-auto">
+            <div className="container">
+                <div className="row">
+                    <div className="card mt-2 mb-2 px-1 py- offset-lg-1 col-lg-10">
+                        <div className="card-body px-1 py-1">
+                { error ? <div className="alert alert-danger mt-2 mb-5 text-center">Todos los campos son obligatorios</div> : null }
+                            <div className="row">
+                                <form onSubmit={this.handleSubmit} className="col-lg-12 mb-0">
+                                    <div className="row">
+                                        <div className="form-group offset-lg-1 col-lg-6 my-auto pl-0">
                                             <input 
-                                            type="date" 
+                                            type="text" 
                                             className="form-control" 
+                                            placeholder="Cosa por hacer" 
+                                            name="description"
+                                            onChange={this.handleChange}
+                                            value={this.state.todo.description}
+                                            />
+                                        </div> 
+
+
+                                        <div className="form-group col-lg-3 my-auto">
+                                                <input 
+                                            type="date" 
+                                            className="form-control date_input d-inline-block" 
                                             name="date"
                                             onChange={this.handleChange}
                                             value={this.state.todo.date}
                                             />
-                                    </div> 
-                                    <div className="col-lg-2">
-                                        <input type="submit" className="btn btn-secondary bmd-btn-fab" value="Prueba"/>
+                                            <i class="material-icons">calendar_today</i>
+                                        </div> 
+                                        <div className="col-lg-2 text-center my-auto">
+                                            <button type="submit" class="btn btn-secondary bmd-btn-fab"><i class="material-icons">add</i></button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    </div>            
                 </div>
             </div>
         );

@@ -9,3 +9,7 @@
 .todo__status--late{
     background-color:rgba(255, 0, 0, 0.2);
 }
+
+.date_input_todo{
+    width: 141px;
+}
