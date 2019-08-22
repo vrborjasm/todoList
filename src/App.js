@@ -129,7 +129,7 @@ class App extends Component {
     todoList = this.sortedList(todoList)
     return (
       <div>
-        <Header title="Todo List"/>
+        <Header title="todoList"/>
         <Admin freeTodos={this.freeTodos} handleChangeSort={this.handleChangeSort} handleChangeFilter={this.handleChangeFilter}/>
         <TodoList todoList={todoList} handleCheck={this.handleCheck} modifyDate={this.modifyDate}/>
         <NewTodo addTodo={this.addTodo}/> 

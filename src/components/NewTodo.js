@@ -44,13 +44,13 @@ class NewTodo extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="card mt-2 mb-2 px-1 py- offset-lg-1 col-lg-10">
+                    <div className="card mt-2 mb-2 px-1 py-1 offset-lg-2 col-lg-8">
                         <div className="card-body px-1 py-1">
                 { error ? <div className="alert alert-danger mt-2 mb-5 text-center">Todos los campos son obligatorios</div> : null }
-                            <div className="row">
-                                <form onSubmit={this.handleSubmit} className="col-lg-12 mb-0">
+        
+                                <form onSubmit={this.handleSubmit} className="mb-0">
                                     <div className="row">
-                                        <div className="form-group offset-lg-1 col-lg-6 my-auto pl-0">
+                                        <div className="form-group col-lg-6 my-auto">
                                             <input 
                                             type="text" 
                                             className="form-control" 
@@ -62,7 +62,7 @@ class NewTodo extends Component {
                                         </div> 
 
 
-                                        <div className="form-group col-lg-3 my-auto">
+                                        <div className="form-group col-11 col-lg-4 my-auto text-center">
                                                 <input 
                                             type="date" 
                                             className="form-control date_input d-inline-block" 
@@ -77,7 +77,7 @@ class NewTodo extends Component {
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            
                         </div>
                     </div>            
                 </div>
