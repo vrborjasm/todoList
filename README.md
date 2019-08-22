@@ -1,3 +1,18 @@
+## Documentación 
+### Online
+Para fines prácticos se habilitó esta página: https://infallible-hodgkin-a19bd7.netlify.com/ . Sin embargo, la base de datos se limpiará cada vez que se recargue la página (esta BD es usando json-server online).
+
+### Local
+Esta app fue creada usando `create-react-app` por lo que todos los comandos habituales estan disponibles (`npm start, npm build, npm test, npm eject`). Sin embargo, para pode correr la app de manera sencilla es suficiente con:
+- Clonar el repositorio https://github.com/vrborjasm/todoList : `git clone git@github.com:vrborjasm/todoList.git`
+- Moverte al directorio que se creo: `cd todoList`
+- (Ademas como indicaba el test, debes tener typicode json-server: `json-server --watch db.json`)
+- Instalar dependencias: `npm install`
+- Listo, correr el servidor: `npm start`
+
+Después de este punto, se consigue toda la documentación por defecto de una app react
+
+----------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
