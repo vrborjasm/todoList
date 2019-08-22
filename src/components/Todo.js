@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Todo.css';
+
 const changeStatus = ({ finished, date }) => {
   if (finished) return 'done'
     else if (new Date(date) > Date.now()) return 'alarm'
@@ -8,8 +10,15 @@ const changeStatus = ({ finished, date }) => {
 
 const Todo = ({ todo, handleCheck, modifyDate }) => {  
   const status = changeStatus(todo)
+  const extraClasses = {
+    'done': 'todo__status--finished',
+    'alarm': 'todo__status--pending',
+    'warning': 'todo__status--late',
+  };
+
+  const classStatus = `card mt-1 mb-1 ${extraClasses[status]}`
   return (
-    <div className="card mt-1 mb-1">
+    <div className={classStatus}>
         <div className="card-body">
             <div className="row">
                 <div className="col-lg-2 my-auto text-center">
