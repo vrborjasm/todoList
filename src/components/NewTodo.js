@@ -47,7 +47,7 @@ class NewTodo extends Component {
                         <div className="row">
                             <form onSubmit={this.handleSubmit} className="col-lg-12">
                                 <div className="row">
-                                    <div className="form-group col-lg-7">
+                                    <div className="form-group col-lg-7 my-auto">
                                         <input 
                                         type="text" 
                                         className="form-control" 
@@ -59,7 +59,7 @@ class NewTodo extends Component {
                                     </div> 
 
 
-                                    <div className="form-group col-lg-3">
+                                    <div className="form-group col-lg-3 my-auto">
                                             <input 
                                             type="date" 
                                             className="form-control" 
@@ -69,7 +69,7 @@ class NewTodo extends Component {
                                             />
                                     </div> 
                                     <div className="col-lg-2">
-                                        <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="Agregar Todo"/>
+                                        <input type="submit" className="btn btn-secondary bmd-btn-fab" value="Prueba"/>
                                     </div>
                                 </div>
                             </form>
