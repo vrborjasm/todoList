@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER = 'http://localhost:3000/todos';
+const SERVER = 'https://my-json-server.typicode.com/vrborjasm/todoList/todos';
 
 const api = {
   getList: () => axios.get(SERVER),
