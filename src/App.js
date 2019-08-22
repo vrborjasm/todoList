@@ -10,7 +10,8 @@ import api from './api';
 class App extends Component {
   state={
     todoList: [],
-    sortBy: 'creation'
+    sortBy: 'creation',
+    filterBy: 'all'
   }
 
   componentDidMount () {
@@ -21,6 +22,10 @@ class App extends Component {
 
     handleChange= (e) => {
       this.setState({ sortBy: e.target.value })  
+  }
+
+    handleChangeFilter= (e) => {
+      this.setState({ filterBy: e.target.value })  
   }
 
     handleCheck = (oldTodo) => {
@@ -80,38 +85,56 @@ class App extends Component {
     })
 }
 
-    sortedList = () => {
+    sortedList = (todoList) => {
       const order = this.state.sortBy
       let todof = []
       let todol = []
       let todop = []
-      let todoList = []
       
       if (order === "creation") {
-        todoList = this.state.todoList.sort((todoA, todoB) => todoA.id < todoB.id);
+        todoList = todoList.sort((todoA, todoB) => todoA.id < todoB.id);
       }
 
       if (order === "expiration") {
-        todoList = this.state.todoList.sort((todoA, todoB) => new Date(todoA.date) > new Date(todoB.date));
+        todoList = todoList.sort((todoA, todoB) => new Date(todoA.date) > new Date(todoB.date));
       }
 
       if (order === "status") {
-        this.state.todoList.forEach(todo => {
+        todoList.forEach(todo => {
           if (todo.finished) { todof.push(todo) }
           else if (new Date(todo.date) > new Date()) { todop.push(todo) }
           else {todol.push(todo)}
         });
+        
         todoList = todol.concat(todop,todof)
       }
       return todoList
     }  
 
+    filteredList = () => {
+      const filter = this.state.filterBy
+      let todoList = []
+      
+      if (filter === "all") {
+        todoList = this.state.todoList
+      } else if (filter === "free") {
+        todoList = this.state.todoList.filter(todo => todo.finished)
+      } else if (filter === "pending") {
+        todoList = this.state.todoList.filter(todo => !todo.finished && new Date(todo.date) > new Date())
+      } else {
+        todoList = this.state.todoList.filter(todo => !todo.finished && new Date(todo.date) < new Date())
+      }
+
+      return todoList
+    }  
+
   render() {
-    const todoList = this.sortedList()
+    let todoList = this.filteredList()
+    todoList = this.sortedList(todoList)
     return (
       <div>
         <Header title="Todo List"/>
-        <Admin freeTodos={this.freeTodos} handleChange={this.handleChange}/>
+        <Admin freeTodos={this.freeTodos} handleChange={this.handleChange} handleChangeFilter={this.handleChangeFilter}/>
         <TodoList todoList={todoList} handleCheck={this.handleCheck} modifyDate={this.modifyDate}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
