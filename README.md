@@ -6,7 +6,8 @@ Para fines prácticos se habilitó esta página: https://infallible-hodgkin-a19b
 Esta app fue creada usando `create-react-app` por lo que todos los comandos habituales estan disponibles (`npm start, npm build, npm test, npm eject`). Sin embargo, para pode correr la app de manera sencilla es suficiente con:
 - Clonar el repositorio https://github.com/vrborjasm/todoList : `git clone git@github.com:vrborjasm/todoList.git`
 - Moverte al directorio que se creo: `cd todoList`
-- (Ademas como indicaba el test, debes tener typicode json-server: `json-server --watch db.json`)
+- Ademas como indicaba el test, debes tener instalado typicode json-server: `install -g json-server`
+- Correr typecode json-server: `json-server --watch db.json`, cualquier otra información necesaria sobre puede ser consultada en https://github.com/typicode/json-server#getting-started 
 - Instalar dependencias: `npm install`
 - Listo, correr el servidor: `npm start`
 
