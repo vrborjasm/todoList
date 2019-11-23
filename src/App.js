@@ -86,10 +86,6 @@ class App extends Component {
 }
 
     deleteTodo = (id) => {
-      
-      const todoList = this.state.todoList.filter(todo => todo.id !== id)
-      this.setState({ todoList });   
-      
       api.delete(id).then(responde => {
         const todoList = this.state.todoList.filter(todo => todo.id !== id);
         this.setState({ todoList }); 
