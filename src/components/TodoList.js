@@ -2,7 +2,7 @@ import React from 'react';
 
 import Todo from './Todo'
 
-const TodoList = ({ todoList, handleCheck, modifyDate }) => {
+const TodoList = ({ todoList, handleCheck, modifyDate, deleteTodo }) => {
   return (
     <div className="container">
       <div className="row">
@@ -13,6 +13,7 @@ const TodoList = ({ todoList, handleCheck, modifyDate }) => {
           key={todo.id}
           modifyDate={modifyDate}
           handleCheck={handleCheck}
+          deleteTodo={deleteTodo}
         />))
       }
 

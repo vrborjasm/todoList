@@ -8,7 +8,7 @@ const changeStatus = ({ finished, date }) => {
     return 'warning'
   }
 
-const Todo = ({ todo, handleCheck, modifyDate }) => {  
+const Todo = ({ todo, handleCheck, modifyDate, deleteTodo }) => {  
   const status = changeStatus(todo)
   const extraClasses = {
     'done': 'todo__status--finished',
@@ -50,6 +50,8 @@ const Todo = ({ todo, handleCheck, modifyDate }) => {
                   </div>
               </div>  
           </div>
+          <i className="material-icons" onClick={() => deleteTodo(todo.id)}>check_box</i>
+
     </div>
   )
 };

@@ -85,6 +85,20 @@ class App extends Component {
     })
 }
 
+    deleteTodo = (id) => {
+      
+      const todoList = this.state.todoList.filter(todo => todo.id !== id)
+      this.setState({ todoList });   
+      
+      api.delete(id).then(responde => {
+        const todoList = this.state.todoList.filter(todo => todo.id !== id);
+        this.setState({ todoList }); 
+      })
+      .catch(err => {
+        alert('Hubo un problema conectando con el servidor. Intentelo de nuevo mas tarde');
+      })
+    }
+
     sortedList = (todoList) => {
       const order = this.state.sortBy
       let todof = []
@@ -131,7 +145,7 @@ class App extends Component {
       <div>
         <Header title="todoList"/>
         <Admin freeTodos={this.freeTodos} handleChangeSort={this.handleChangeSort} handleChangeFilter={this.handleChangeFilter}/>
-        <TodoList todoList={todoList} handleCheck={this.handleCheck} modifyDate={this.modifyDate}/>
+        <TodoList todoList={todoList} handleCheck={this.handleCheck} modifyDate={this.modifyDate} deleteTodo={this.deleteTodo}/>
         <NewTodo addTodo={this.addTodo}/> 
       </div>
     );
