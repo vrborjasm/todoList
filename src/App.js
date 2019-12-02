@@ -11,7 +11,8 @@ class App extends Component {
   state = {
     todoList: [],
     sortBy: "creation",
-    filterBy: "all"
+    filterBy: "all",
+    countTodos: []
   };
 
   componentDidMount() {
@@ -50,6 +51,19 @@ class App extends Component {
       }
     })
   }, 30000);
+
+  count = setInterval(() => {
+    let done = 0;
+    let alarm = 0;
+    let warning = 0;
+    this.state.todoList.forEach(todo => {
+      if (todo.status === 'done'){done++}
+      if (todo.status === 'alarm'){alarm++}
+      if (todo.status === 'warning'){warning++}
+    })
+    let countTodos = [done,alarm,warning]
+    this.setState({countTodos})
+  }, 10000);
 
   handleChangeSort = e => {
     this.setState({ sortBy: e.target.value });
@@ -221,7 +235,7 @@ class App extends Component {
           changeStatus={this.changeStatus}
         />
         <NewTodo addTodo={this.addTodo} />
-        <Chart todoList={todoList}/>
+        <Chart countTodos={this.state.countTodos}/>
       </div>
     );
   }

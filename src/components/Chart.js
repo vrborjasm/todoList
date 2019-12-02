@@ -10,7 +10,7 @@ class Chart extends Component {
         datasets: [
           {
             label: "Todos",
-            data: [4, 3, 4],
+            data: [2,3,5],
             backgroundColor: [
               "rgba(255, 99, 132, 0.6)",
               "rgba(54, 162, 235, 0.6)",
@@ -22,11 +22,10 @@ class Chart extends Component {
     };
   }
 
-
   render() {
     return (
       <div className="chart">
-        <Bar data={this.state.chartData} width={100} height={50} options={{
+        <Bar data={this.state.chartData} width={50} height={25} options={{
             title:{
                 display:true,
                 text:"Todo's",
