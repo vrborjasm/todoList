@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Admin from "./components/Admin";
 import TodoList from "./components/TodoList";
 import NewTodo from "./components/NewTodo";
+import Chart from "./components/Chart";
 import api from "./api";
 
 class App extends Component {
@@ -220,6 +221,7 @@ class App extends Component {
           changeStatus={this.changeStatus}
         />
         <NewTodo addTodo={this.addTodo} />
+        <Chart/>
       </div>
     );
   }
