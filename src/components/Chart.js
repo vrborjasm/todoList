@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
+import "chartjs-plugin-datalabels";
 
 import "./Chart.css";
 
@@ -33,7 +34,7 @@ class Chart extends Component {
   }
 
   handleDisplayButton = () => {
-    if (this.state.display == "d-none") {
+    if (this.state.display === "d-none") {
       this.setState({ display: "d-block" });
     } else {
       this.setState({ display: "d-none" });
@@ -49,6 +50,17 @@ class Chart extends Component {
             width={150}
             height={50}
             options={{
+              plugins: {
+                datalabels: {
+                  color: "black",
+                  labels: {
+                    title: {},
+                    value: {
+                      color: "black"
+                    }
+                  }
+                }
+              },
               title: {
                 display: true,
                 text: "Todo's",
