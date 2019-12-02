@@ -221,7 +221,7 @@ class App extends Component {
           changeStatus={this.changeStatus}
         />
         <NewTodo addTodo={this.addTodo} />
-        <Chart/>
+        <Chart todoList={todoList}/>
       </div>
     );
   }
