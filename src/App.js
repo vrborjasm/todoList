@@ -63,7 +63,7 @@ class App extends Component {
     })
     let countTodos = [done,alarm,warning]
     this.setState({countTodos})
-  }, 10000);
+  }, 2000);
 
   handleChangeSort = e => {
     this.setState({ sortBy: e.target.value });
@@ -215,7 +215,7 @@ class App extends Component {
 
     return todoList;
   };
-
+  
   render() {
     let todoList = this.filteredList();
     todoList = this.sortedList(todoList);
