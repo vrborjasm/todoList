@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Doughnut  } from "react-chartjs-2";
 
+import "./Chart.css"
+
 class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: {}
+      chartData: {},
+      display: 'd-none'
     };
   }
   
@@ -17,30 +20,41 @@ class Chart extends Component {
             label: "Todos",
             data: this.props.countTodos,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.6)",
-              "rgba(54, 162, 235, 0.6)",
-              "rgba(75, 192, 86, 0.6)"
+              "rgba(0, 255, 0, 0.6)",
+              "rgba(255, 255, 0, 0.6)",
+              "rgba(255, 0, 0, 0.6)"
             ]
           }
         ]}
         this.setState({chartData})
   }, 3000);
 
-  
+  handleDisplayButton = () => {
+    if (this.state.display == 'd-none') {
+      this.setState({ display: 'd-block' });
+    } else {
+      this.setState({ display: 'd-none' });
+    }
+  };
+
   render() {
     return (
-      <div className="chart">
-        <Doughnut  data={this.state.chartData} width={150} height={35} options={{
+      <div>
+        <div className={this.state.display}>
+        <Doughnut  data={this.state.chartData} width={150} height={50} options={{
+
             title:{
                 display:true,
                 text:"Todo's",
                 fontSize:25
             },
             legend:{
-                display:false,
-                position: 'right'
+                display:true,
+                position: 'bottom'
             }    
         }} />
+        </div>
+        <button class="btn mx-auto my-2 d-block btn-secondary bmd-btn-fab m" onClick={this.handleDisplayButton}><i class="material-icons">pie_chart</i></button>
       </div>
     );
   }
