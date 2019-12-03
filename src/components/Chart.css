@@ -1,5 +1,5 @@
 canvas {
-    position: absolute;
+    position: fixed;
     top: 15%;
     z-index: 1;
     background: rgba(255, 255, 255, 0.8);
@@ -7,4 +7,10 @@ canvas {
     -moz-box-shadow: -1px 9px 5px 0px rgba(0,0,0,0.75);
     box-shadow: -1px 9px 5px 0px rgba(0,0,0,0.75);
     height: 100%;
+}
+
+.btn-fixed {
+    position: fixed; 
+    bottom: 5px; 
+    right: 5px; 
 }

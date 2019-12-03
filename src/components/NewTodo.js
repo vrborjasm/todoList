@@ -50,7 +50,7 @@ class NewTodo extends Component {
         
                                 <form onSubmit={this.handleSubmit} className="mb-0">
                                     <div className="row">
-                                        <div className="form-group col-lg-6 my-auto">
+                                        <div className="form-group col-6 col-sm-5 col-md-6 my-auto">
                                             <input 
                                             type="text" 
                                             className="form-control" 
@@ -62,7 +62,7 @@ class NewTodo extends Component {
                                         </div> 
 
 
-                                        <div className="form-group col-11 col-lg-4 my-auto text-center">
+                                        <div className="form-group col-3 col-6 col-sm-5 col-md-4 my-auto text-center">
                                                 <input 
                                             type="date" 
                                             className="form-control date_input d-inline-block" 
@@ -72,7 +72,7 @@ class NewTodo extends Component {
                                             />
                                             <i class="material-icons">calendar_today</i>
                                         </div> 
-                                        <div className="col-lg-2 text-center my-auto">
+                                        <div className="col-12 col-sm-2 col-md-2 text-center my-auto">
                                             <button type="submit" class="btn btn-secondary bmd-btn-fab"><i class="material-icons">add</i></button>
                                         </div>
                                     </div>
