@@ -28,28 +28,30 @@ class App extends Component {
 
   time = setInterval(() => {
     this.state.todoList.forEach(todo => {
-      const todoList = this.state.todoList.filter(compareTodo => compareTodo.id !== todo.id);
+      const todoList = this.state.todoList.filter(
+        compareTodo => compareTodo.id !== todo.id
+      );
       this.setState({ todoList });
-      const newStatus = this.checkStatus(todo.date, todo.status)
+      const newStatus = this.checkStatus(todo.date, todo.status);
       if (todo.status !== newStatus) {
         api
-        .patch(todo.id, {
-          status: newStatus
-        })
-        .then(response => {
-          this.setState({ todoList: this.includeInTodoList(response.data) });
-        })
-        .catch(err => {
-          this.setState({ todoList: this.includeInTodoList({ ...todo }) });
-          alert(
-            "Hubo un problema conectando al servidor. Intentalo de nuevo mas tarde!"
-          );
-        });
+          .patch(todo.id, {
+            status: newStatus
+          })
+          .then(response => {
+            this.setState({ todoList: this.includeInTodoList(response.data) });
+          })
+          .catch(err => {
+            this.setState({ todoList: this.includeInTodoList({ ...todo }) });
+            alert(
+              "Hubo un problema conectando al servidor. Intentalo de nuevo mas tarde!"
+            );
+          });
       } else {
         todoList.push(todo);
         this.setState({ todoList });
       }
-    })
+    });
   }, 30000);
 
   count = setInterval(() => {
@@ -57,12 +59,18 @@ class App extends Component {
     let alarm = 0;
     let warning = 0;
     this.state.todoList.forEach(todo => {
-      if (todo.status === 'done'){done++}
-      if (todo.status === 'alarm'){alarm++}
-      if (todo.status === 'warning'){warning++}
-    })
-    let countTodos = [done,alarm,warning]
-    this.setState({countTodos})
+      if (todo.status === "done") {
+        done++;
+      }
+      if (todo.status === "alarm") {
+        alarm++;
+      }
+      if (todo.status === "warning") {
+        warning++;
+      }
+    });
+    let countTodos = [done, alarm, warning];
+    this.setState({ countTodos });
   }, 2000);
 
   handleChangeSort = e => {
@@ -215,7 +223,7 @@ class App extends Component {
 
     return todoList;
   };
-  
+
   render() {
     let todoList = this.filteredList();
     todoList = this.sortedList(todoList);
@@ -235,7 +243,7 @@ class App extends Component {
           changeStatus={this.changeStatus}
         />
         <NewTodo addTodo={this.addTodo} />
-        <Chart countTodos={this.state.countTodos}/>
+        <Chart countTodos={this.state.countTodos} />
       </div>
     );
   }

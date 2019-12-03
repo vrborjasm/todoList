@@ -12,23 +12,25 @@ class Chart extends Component {
     };
   }
 
-  count = setInterval(() => {
-    const chartData = {
-      labels: ["Liberadas", "Pendientes", "Vencidas"],
-      datasets: [
-        {
-          label: "Todos",
-          data: this.props.countTodos,
-          backgroundColor: [
-            "rgba(0, 255, 0, 0.6)",
-            "rgba(255, 255, 0, 0.6)",
-            "rgba(255, 0, 0, 0.6)"
-          ]
-        }
-      ]
-    };
-    this.setState({ chartData });
-  }, 3000);
+  componentDidUpdate(prevProps) {
+    if (this.props.countTodos !== prevProps.countTodos) {
+      const chartData = {
+        labels: ["Liberadas", "Pendientes", "Vencidas"],
+        datasets: [
+          {
+            label: "Todos",
+            data: this.props.countTodos,
+            backgroundColor: [
+              "rgba(0, 255, 0, 0.6)",
+              "rgba(255, 255, 0, 0.6)",
+              "rgba(255, 0, 0, 0.6)"
+            ]
+          }
+        ]
+      };
+      this.setState({ chartData });
+    }
+  }
 
   handleDisplayButton = () => {
     if (this.state.display == "d-none") {
